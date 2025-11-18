@@ -1,39 +1,44 @@
-<!-- include A-Frame obviously -->
-<script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
-<!-- include ar.js for A-Frame -->
-<script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
-<body style='margin : 0px; overflow: hidden;'>
-  <a-scene embedded arjs>
-    <!-- Your code here -->
-       <!-- Assets: Snowflake texture and window texture -->
-     <a-assets>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AR.js Example - Sliding Door</title>
+  <!-- include A-Frame -->
+  <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
+  <!-- include ar.js for A-Frame -->
+  <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+  <!-- particle system component (required for particle-system) -->
+  <script src="https://cdn.jsdelivr.net/gh/IdeaSpaceVR/aframe-particle-system-component/dist/aframe-particle-system-component.min.js"></script>
+  <style>body{margin:0;overflow:hidden}</style>
+</head>
+<body>
+  <a-scene embedded arjs vr-mode-ui="enabled: false">
+    <!-- Assets: Snowflake texture and window texture -->
+    <a-assets>
       <img id="snowflake" src="https://cdn.pixabay.com/photo/2017/11/10/05/15/snow-2931134_1280.png" />
       <img id="windowTexture" src="images/sliding-door.webp" /> 
     </a-assets>
     
     <!-- Snowflakes particle system -->
-    <a-entity id="snow" position="0 2 -2" particle-system=" preset: snow; particleCount: 200 "></a-entity>
+    <a-entity id="snow" position="0 2 -2" particle-system="preset: snow; particleCount: 200"></a-entity>
     
     <!-- Custom pattern marker for window -->
-    <a-marker type='pattern' url='patterns/pattern-sliding-door.patt' id='window-marker'>
+    <a-marker type="pattern" url="patterns/pattern-sliding-door.patt" id="window-marker">
       <!-- Window with snowflakes behind -->
-      <a-entity position='0 1 0'>
+      <a-entity position="0 1 0">
         <!-- Window image -->
-        <a-plane 
-          geometry="height: 1; width: 1" 
-          material="shader: flat; src: #windowTexture" 
-          position="0 0 0">
-        </a-plane>
+        <a-plane geometry="height: 1; width: 1" material="shader: flat; src: #windowTexture" position="0 0 0"></a-plane>
         
         <!-- Snowflakes in the background -->
-        <a-entity 
-          particle-system="preset: snow; particleCount: 200" 
-          position="0 1 -0.5">
-        </a-entity>
+        <a-entity particle-system="preset: snow; particleCount: 200" position="0 1 -0.5"></a-entity>
       </a-entity>
     </a-marker>
 
     <!-- Camera -->
     <a-entity camera></a-entity>
   </a-scene>
+
+  <noscript>Please enable JavaScript to run this AR demo.</noscript>
 </body>
+</html>
